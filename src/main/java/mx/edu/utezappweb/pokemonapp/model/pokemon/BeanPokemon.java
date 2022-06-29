@@ -3,6 +3,7 @@ import mx.edu.utezappweb.pokemonapp.model.ability.BeanAbility;
 
 import java.util.List;
 public class BeanPokemon {
+    private long id;
     private String name;
     private double health;
     private double power;
@@ -22,6 +23,14 @@ public class BeanPokemon {
         this.height = height;
         this.pokemonType = pokemonType;
         this.abilities = abilities;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {

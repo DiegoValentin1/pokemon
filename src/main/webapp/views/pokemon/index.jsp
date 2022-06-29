@@ -5,12 +5,36 @@
   Time: 02:28 p. m.
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<head>
+    <title>Pokemons</title>
+</head>
+<body>
+    <c:if test="${param['result']}">
+        <p><c:out value="${param['message']}"></c:out></p>
+    </c:if>
+
+    <table style="border: 1px solid">
+        <thead>
+            <th>#</th>
+            <th>Pokemon</th>
+        </thead>
+        <tbody>
+        <c:forEach var="pokemon" items="${pokemons}" varStatus="status">
+            <tr>
+                <td>
+                    <c:out value="${status.count}"></c:out>
+                </td>
+                <td>
+                    <c:out value="${status.name}"></c:out>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</body>
 </html>
