@@ -12,29 +12,74 @@
 <html>
 <head>
     <title>Pokemons</title>
+    <jsp:include page="../../templates/head.jsp"/>
 </head>
 <body>
-    <c:if test="${param['result']}">
-        <p><c:out value="${param['message']}"></c:out></p>
-    </c:if>
 
-    <table style="border: 1px solid">
-        <thead>
-            <th>#</th>
-            <th>Pokemon</th>
-        </thead>
-        <tbody>
-        <c:forEach var="pokemon" items="${pokemons}" varStatus="status">
-            <tr>
-                <td>
-                    <c:out value="${status.count}"></c:out>
-                </td>
-                <td>
-                    <c:out value="${status.name}"></c:out>
-                </td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+
+<jsp:include page="../../templates/navbar.jsp"/>
+<div class="row mt-5">
+    <div class="col-12">
+        <c:if test="${param['result']}">
+            <p><c:out value="${param['message']}"/></p>
+        </c:if>
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-6">
+                        POKEMONS
+                    </div>
+                    <div class="col-6 text-end">
+                        <a href="create-pokemon" class="btn btn-outLine-success btn-sm">
+                            Registrar pokemon
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm table-hover">
+                    <thead>
+                    <th>#</th>
+                    <th>Pokemon</th>
+                    <th>Health</th>
+                    <th>Power</th>
+                    <th>Weight</th>
+                    <th>Height</th>
+                    <th>Type</th>
+                    </thead>
+                    <tbody>
+                    <c:forEach var="pokemon" items="${pokemons}" varStatus="status">
+                        <tr>
+                            <td>
+                                <c:out value="${status.count}"/>
+                            </td>
+                            <td>
+                                <c:out value="${pokemon.name}"/>
+                            </td>
+                            <td>
+                                <c:out value="${pokemon.health}"/>
+                            </td>
+                            <td>
+                                <c:out value="${pokemon.power}"/>
+                            </td>
+                            <td>
+                                <c:out value="${pokemon.weight}"/>
+                            </td>
+                            <td>
+                                <c:out value="${pokemon.height}"/>
+                            </td>
+                            <td>
+                                <c:out value="${pokemon.pokemonType}"/>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<jsp:include page="../../templates/footer.jsp"/>
 </body>
 </html>
