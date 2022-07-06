@@ -63,4 +63,25 @@ public class DaoPokemon {
         }
     }
 
+    public boolean save(BeanPokemon pokemon){
+        try {
+            conn = new MYSQLConnection().getConnection();
+            String query = "INSERT INTO pokemons" + "(name, health, power, weight, height, type)" + "VALUES (?,?,?,?,?,?)";
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1,pokemon.getName());
+            pstm.setDouble(2,pokemon.getHealth());
+            pstm.setDouble(3,pokemon.getPower());
+            pstm.setDouble(4,pokemon.getWeight());
+            pstm.setDouble(5,pokemon.getHeight());
+            pstm.setString(6,pokemon.getPokemonType());
+            return pstm.executeUpdate() ==1;
+        }catch (SQLException e){
+            Logger.getLogger(DaoPokemon.class.getName())
+                    .log(Level.SEVERE, "Error save", e);
+            return false;
+        }finally {
+            closeConnections();
+        }
+    }
+
 }
